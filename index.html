@@ -54,7 +54,7 @@ body{
 }
 
 /* =========================
-   3 SECOND WELCOME SCREEN
+   2 SECOND WELCOME SCREEN
 ========================= */
 
 .welcome-screen{
@@ -79,7 +79,7 @@ body{
   width:100%;
   max-width:370px;
   text-align:center;
-  animation:welcomeRise .8s ease both;
+  animation:welcomeRise .7s ease both;
 }
 
 .welcome-symbol{
@@ -143,10 +143,19 @@ body{
   line-height:1.6;
 }
 
+.welcome-disclaimer{
+  max-width:310px;
+  margin:20px auto 0;
+  color:#69758a;
+  font-size:11px;
+  line-height:1.5;
+  text-align:center;
+}
+
 .welcome-loader{
   width:125px;
   height:3px;
-  margin:32px auto 0;
+  margin:25px auto 0;
   overflow:hidden;
   border-radius:10px;
   background:#e9edf7;
@@ -156,7 +165,7 @@ body{
   width:0;
   height:100%;
   background:linear-gradient(90deg,var(--blue),var(--orange));
-  animation:loadWelcome 3s linear forwards;
+  animation:loadWelcome 2s linear forwards;
 }
 
 @keyframes welcomeRise{
@@ -436,7 +445,7 @@ h2 span{
 
 <body>
 
-<!-- WHITE WELCOME SCREEN -->
+<!-- 2-SECOND WHITE WELCOME SCREEN -->
 <div class="welcome-screen" id="welcomeScreen"
      role="status" aria-label="Welcome to Nitin Murarka">
 
@@ -457,6 +466,12 @@ h2 span{
     <p class="welcome-description">
       Your Financial Learning Journey<br>
       Begins Here.
+    </p>
+
+    <p class="welcome-disclaimer">
+      For financial education and awareness only.
+      Investing and trading involve risk,
+      including possible loss of capital.
     </p>
 
     <div class="welcome-loader">
@@ -606,10 +621,10 @@ h2 span{
     updateCountdown();
   }
 
-  // Show white welcome screen for 3 seconds.
-  setTimeout(startCountdown,3000);
+  // Welcome screen displays for 2 seconds.
+  setTimeout(startCountdown,2000);
 
-  // Track only a manual CTA click.
+  // Subscribe event fires on manual CTA click.
   button.addEventListener("click",function(event){
     if(event.defaultPrevented)return;
 
