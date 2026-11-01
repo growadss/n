@@ -4,14 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f1f4fc">
-<meta name="description" content="Nitin Murarka - A learning space for financial market fundamentals, chart literacy and risk awareness.">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Nitin Murarka - Financial market education, chart literacy and risk awareness.">
 <title>NITIN MURARKA | Market Education</title>
 
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=fbq=function(){n.callMethod?
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
@@ -46,16 +46,143 @@ html,body{
 }
 
 body{
-  height:100vh;
-  height:100dvh;
+  min-height:100vh;
+  min-height:100dvh;
   overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:8px;
-  background:linear-gradient(145deg,#cbd8f8,#f9eee4);
   font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   color:var(--ink);
+}
+
+/* =========================
+   3 SECOND WELCOME SCREEN
+========================= */
+
+.welcome-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  background:#fff;
+  transition:opacity .55s ease,visibility .55s ease;
+}
+
+.welcome-screen.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.welcome-content{
+  width:100%;
+  max-width:370px;
+  text-align:center;
+  animation:welcomeRise .8s ease both;
+}
+
+.welcome-symbol{
+  width:74px;
+  height:74px;
+  margin:0 auto 23px;
+  display:grid;
+  place-items:center;
+  border:2px solid #dce5ff;
+  border-radius:22px;
+  background:linear-gradient(135deg,#f1f5ff,#ffffff);
+  color:var(--blue);
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-2px;
+  box-shadow:0 12px 35px #2144a41c;
+  transform:rotate(-5deg);
+}
+
+.welcome-small{
+  margin:0 0 10px;
+  color:#7181a4;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.welcome-title{
+  margin:0;
+  font-size:clamp(43px,13vw,62px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-2px;
+  color:#193987;
+}
+
+.welcome-title span{
+  color:var(--orange);
+}
+
+.welcome-name{
+  margin:17px 0 0;
+  color:#263a64;
+  font-size:clamp(17px,5vw,22px);
+  font-weight:850;
+  letter-spacing:2px;
+}
+
+.welcome-line{
+  width:65px;
+  height:4px;
+  margin:22px auto;
+  border-radius:20px;
+  background:linear-gradient(90deg,var(--blue),var(--orange));
+}
+
+.welcome-description{
+  margin:0;
+  color:#74809a;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.welcome-loader{
+  width:125px;
+  height:3px;
+  margin:32px auto 0;
+  overflow:hidden;
+  border-radius:10px;
+  background:#e9edf7;
+}
+
+.welcome-progress{
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,var(--blue),var(--orange));
+  animation:loadWelcome 3s linear forwards;
+}
+
+@keyframes welcomeRise{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes loadWelcome{
+  from{width:0}
+  to{width:100%}
+}
+
+/* =========================
+   MAIN LANDING PAGE
+========================= */
+
+.page{
+  width:100%;
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#cbd8f8,#f9eee4);
 }
 
 .card{
@@ -70,7 +197,7 @@ body{
   gap:clamp(4px,1vh,12px);
   padding:13px 16px;
   border-radius:23px;
-  border:1px solid #ffffff;
+  border:1px solid #fff;
   background:var(--paper);
   box-shadow:0 20px 50px #25408030;
 }
@@ -163,7 +290,9 @@ h2{
   letter-spacing:-.9px;
 }
 
-h2 span{color:#e87337}
+h2 span{
+  color:#e87337;
+}
 
 .description{
   margin:0;
@@ -211,7 +340,9 @@ h2 span{color:#e87337}
   background:var(--blue);
 }
 
-.topic:last-child .dot{background:#f18042}
+.topic:last-child .dot{
+  background:#f18042;
+}
 
 .topic p{
   margin:0;
@@ -283,117 +414,173 @@ h2 span{color:#e87337}
   .topics{gap:5px}
   .topic p{font-size:10px}
   .cta{min-height:40px}
-  .disclaimer{font-size:9px;line-height:1.3;padding-top:5px}
+  .disclaimer{
+    font-size:9px;
+    line-height:1.3;
+    padding-top:5px;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
-  .cta{animation:none}
+  .welcome-content,
+  .welcome-progress,
+  .cta{
+    animation:none;
+  }
+  .welcome-screen{
+    transition:none;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<main class="card">
+<!-- WHITE WELCOME SCREEN -->
+<div class="welcome-screen" id="welcomeScreen"
+     role="status" aria-label="Welcome to Nitin Murarka">
 
-  <header class="brand">
-    <div class="logo">
-      <img
-        src="nitin.jpg"
-        alt="Nitin Murarka"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span aria-hidden="true">NM</span>
+  <div class="welcome-content">
+
+    <div class="welcome-symbol">NM</div>
+
+    <p class="welcome-small">A NEW WAY TO EXPLORE</p>
+
+    <div class="welcome-title">
+      WEL<span>COME.</span>
     </div>
 
-    <div class="brand-copy">
-      <small>FINANCIAL EDUCATION COMMUNITY</small>
-      <h1>NITIN<br>MURARKA</h1>
-    </div>
-  </header>
+    <p class="welcome-name">NITIN MURARKA</p>
 
-  <section class="hero">
-    <div class="hero-tag">BUILD YOUR MARKET UNDERSTANDING</div>
-    <h2>
-      Knowledge Makes<br>
-      <span>Markets Clearer.</span>
-    </h2>
-    <p class="description">
-      Discover essential financial market concepts,
-      explore how charts and price movements are interpreted,
-      and develop awareness of market risks through
-      straightforward educational resources.
+    <div class="welcome-line"></div>
+
+    <p class="welcome-description">
+      Your Financial Learning Journey<br>
+      Begins Here.
     </p>
-  </section>
 
-  <section aria-label="Learning areas">
-    <p class="section-title">WHAT YOU CAN EXPLORE</p>
-
-    <div class="topics">
-      <div class="topic">
-        <span class="dot"></span>
-        <p>Market Basics &amp; Financial Terms</p>
-      </div>
-
-      <div class="topic">
-        <span class="dot"></span>
-        <p>Chart Reading &amp; Market Trends</p>
-      </div>
-
-      <div class="topic">
-        <span class="dot"></span>
-        <p>Risk Awareness &amp; Financial Literacy</p>
-      </div>
+    <div class="welcome-loader">
+      <div class="welcome-progress"></div>
     </div>
-  </section>
 
-  <a
-    id="joinBtn"
-    class="cta"
-    href="https://t.me/+zCcAveGsrwY5MGFl">
-    JOIN FREE LEARNING COMMUNITY
-  </a>
+  </div>
+</div>
 
-  <p class="timer" id="timerText">
-    Opening Learning Community in
-    <strong id="seconds">10</strong>
-    seconds
-  </p>
+<!-- MAIN PAGE -->
+<div class="page" id="mainPage">
 
-  <p class="disclaimer">
-    General educational information only.
-    No content constitutes personalized investment advice
-    or a recommendation to buy or sell securities.
-    Investing and trading involve risks, including possible
-    loss of capital. Make independent financial decisions.
-  </p>
+  <main class="card">
 
-</main>
+    <header class="brand">
+      <div class="logo">
+        <img
+          src="nitin.jpg"
+          alt="Nitin Murarka"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span aria-hidden="true">NM</span>
+      </div>
+
+      <div class="brand-copy">
+        <small>FINANCIAL EDUCATION COMMUNITY</small>
+        <h1>NITIN<br>MURARKA</h1>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-tag">
+        BUILD YOUR MARKET UNDERSTANDING
+      </div>
+
+      <h2>
+        Knowledge Makes<br>
+        <span>Markets Clearer.</span>
+      </h2>
+
+      <p class="description">
+        Discover essential financial market concepts,
+        explore how charts and price movements are
+        interpreted, and develop awareness of market
+        risks through straightforward educational
+        resources.
+      </p>
+    </section>
+
+    <section aria-label="Learning areas">
+      <p class="section-title">WHAT YOU CAN EXPLORE</p>
+
+      <div class="topics">
+        <div class="topic">
+          <span class="dot"></span>
+          <p>Market Basics &amp; Financial Terms</p>
+        </div>
+
+        <div class="topic">
+          <span class="dot"></span>
+          <p>Chart Reading &amp; Market Trends</p>
+        </div>
+
+        <div class="topic">
+          <span class="dot"></span>
+          <p>Risk Awareness &amp; Financial Literacy</p>
+        </div>
+      </div>
+    </section>
+
+    <a
+      id="joinBtn"
+      class="cta"
+      href="https://t.me/+zCcAveGsrwY5MGFl">
+      JOIN FREE LEARNING COMMUNITY
+    </a>
+
+    <p class="timer" id="timerText">
+      Opening Learning Community in
+      <strong id="seconds">10</strong>
+      seconds
+    </p>
+
+    <p class="disclaimer">
+      General educational information only.
+      No content constitutes personalized investment
+      advice or a recommendation to buy or sell
+      securities. Investing and trading involve risks,
+      including possible loss of capital.
+      Make independent financial decisions.
+    </p>
+
+  </main>
+</div>
 
 <script>
 (function(){
   "use strict";
 
   const destination="https://t.me/+zCcAveGsrwY5MGFl";
+  const welcome=document.getElementById("welcomeScreen");
   const button=document.getElementById("joinBtn");
   const seconds=document.getElementById("seconds");
   const timerText=document.getElementById("timerText");
-  const deadline=performance.now()+10000;
 
+  let deadline=0;
+  let interval=null;
   let stopped=false;
   let subscribeSent=false;
-  let interval;
+  let welcomeFinished=false;
 
   function stopTimer(){
-    if(stopped)return;
     stopped=true;
-    clearInterval(interval);
+    if(interval!==null){
+      clearInterval(interval);
+      interval=null;
+    }
   }
 
   function updateCountdown(){
-    if(stopped)return;
+    if(stopped || !welcomeFinished)return;
 
     const remaining=Math.max(
-      0,Math.ceil((deadline-performance.now())/1000)
+      0,
+      Math.ceil((deadline-performance.now())/1000)
     );
 
     seconds.textContent=remaining;
@@ -405,12 +592,30 @@ h2 span{color:#e87337}
     }
   }
 
+  function startCountdown(){
+    if(stopped || welcomeFinished)return;
+
+    welcomeFinished=true;
+    welcome.classList.add("hide");
+    welcome.setAttribute("aria-hidden","true");
+
+    deadline=performance.now()+10000;
+    seconds.textContent="10";
+
+    interval=setInterval(updateCountdown,200);
+    updateCountdown();
+  }
+
+  // Show white welcome screen for 3 seconds.
+  setTimeout(startCountdown,3000);
+
+  // Track only a manual CTA click.
   button.addEventListener("click",function(event){
     if(event.defaultPrevented)return;
 
-    if(event.ctrlKey||event.metaKey||
-       event.shiftKey||event.altKey||
-       (event.button!==0&&event.detail!==0)){
+    if(event.ctrlKey || event.metaKey ||
+       event.shiftKey || event.altKey ||
+       (event.button!==0 && event.detail!==0)){
       return;
     }
 
@@ -418,6 +623,7 @@ h2 span{color:#e87337}
 
     if(!subscribeSent){
       subscribeSent=true;
+
       try{
         if(typeof fbq==="function"){
           fbq("track","Subscribe");
@@ -426,8 +632,6 @@ h2 span{color:#e87337}
     }
   });
 
-  interval=setInterval(updateCountdown,200);
-  updateCountdown();
   window.addEventListener("pagehide",stopTimer);
 })();
 </script>
